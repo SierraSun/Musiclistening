@@ -34,7 +34,8 @@ function draw(){
   background(0);
 
   rectMode(CENTER);
-
+  ortho();
+  
   for (let x=-200; x<200; x+=50){
   push();
   rotateY(angle);
