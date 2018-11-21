@@ -1,10 +1,16 @@
 let easycam;
 
+
 function setup() {
     createCanvas(windowWidth, windowHeight,WEBGL);
     sun = new Planet(50, 0, 0, random(TWO_PI));
     sun.spawnMoons(5, 1);
-
+    Dw.EasyCam.prototype.apply = function(n) {
+         var o = this.cam;
+         n = n || o.renderer,
+         n && (this.camEYE = this.getPosition(this.camEYE), this.camLAT = this.getCenter(this.camLAT), this.camRUP = this.getUpVector(this.camRUP), n._curCamera.camera(this.camEYE[0], this.camEYE[1], this.camEYE[2], this.camLAT[0], this.camLAT[1], this.camLAT[2], this.camRUP[0], this.camRUP[1], this.camRUP[2]))
+       };
+    easycam = createEasyCam();
 }
 
 function draw() {
@@ -15,10 +21,9 @@ function draw() {
     // camera(camX,0,(height/2)/tan(PI/6),camX,0,0,0,1,0);
     // let fov = map(mouseX,0,width,0,PI);
     // let cameraZ = (height/2.0) / tan(fov/2.0);
-    // 
+
     // perspective(fov, width/height, cameraZ/10.0, cameraZ*10.0);
 
-    easycam = new Dw.EasyCam(this._renderer);
 
     // translate(width/2, height/2);
     sun.show();
